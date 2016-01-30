@@ -4,13 +4,35 @@ sparkEngine.platform = sparkEngine.platform || {};
 (function(sparkEngine) {
   var platform = sparkEngine.platform;
   
-  
   this.contextCanvas = function(canvasElement) {
+    var mContext;
+    
+  if(canvasElement != undefined && canvasElement != null) {
+        this.getContext(canvasElement);
+      }
     
     this.getContext = function(canvasElement) {
-      if(canvasElement == undefined !! canvasElement == null) {
+      if(canvasElement == undefined || canvasElement == null) {
         return;
       }
+      
+      mContext = canvasElement.getContext("2d");
+    }
+  }
+  
+  this.contextGL = function(canvasElement) {
+    var mContext;
+    
+  if(canvasElement != undefined && canvasElement != null) {
+        this.getContext(canvasElement);
+      }
+    
+    this.getContext = function(canvasElement) {
+      if(canvasElement == undefined || canvasElement == null) {
+        return;
+      }
+      
+      mContext = canvasElement.getContext("webgl") || canvasElement.getContext("experimetal-webgl");
     }
   }
 })(sparkEngine);
